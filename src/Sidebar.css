@@ -1,0 +1,11 @@
+.Sidebar {
+  display: flex;
+  width: 200px;
+  height: 100%;
+  flex-direction: column;
+}
+
+.item {
+  padding: 20px 0;
+  border: 1px solid #000;
+}
