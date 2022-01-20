@@ -5,6 +5,7 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Categories from './Categories';
+import Reports  from './Reports';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -80,25 +81,30 @@ const mdTheme = createTheme();
 
 function App() {
   const [open, setOpen] = React.useState(true);
+  const [page, setPage] = React.useState('cats');
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  const handleChangePage = (ev: string) => {
+    setPage(ev);
+  }
+
   const mainListItems = (
     <div>
-      <ListItem button>
+      <ListItem button onClick={() => handleChangePage('cats')}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Categories" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => handleChangePage('products')}>
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
         <ListItemText primary="Products" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => handleChangePage('reports')}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
@@ -162,7 +168,7 @@ function App() {
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }} className="container">
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <Categories />
+              {page === 'cats' ?  <Categories /> : page === 'reports' ? <Reports /> : ''}
             </Paper>
           </Grid>
         </Container>
